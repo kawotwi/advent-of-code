@@ -1,0 +1,3 @@
+BasedOnStyle: Google  # or LLVM, Mozilla, etc.
+IndentWidth: 4
+ColumnLimit: 100
