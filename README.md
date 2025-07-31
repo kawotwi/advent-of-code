@@ -1,6 +1,6 @@
 # Advent of Code 🎄
 
-Solutions to [Advent of Code](https://adventofcode.com/) challenges in Python.
+Solutions to [Advent of Code](https://adventofcode.com/) challenges in Python, C++, and eventually Rust.
 
 ## Structure
 
@@ -13,8 +13,8 @@ Each day contains:
 ## Languages Used
 
 - [x] Python 3
-- [x] Rust
 - [x] C++
+- [ ] Rust
 
 ## Running
 
