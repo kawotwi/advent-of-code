@@ -1,5 +1,6 @@
 # part2.py
 import sys
+from collections import Counter
 
 def main():
     """
@@ -15,14 +16,12 @@ def main():
 
             for line in file:
                 entries = line.strip().split() # strips newlines and spilts by spaces
-                if entries != []:
+                if entries:
                     left_list.append(entries[0])
                     right_list.append(entries[1])
-                
-            file.close()
 
-        for id in left_list:
-            similarity += int(id) * right_list.count(id)
+        right_counter = Counter(right_list)
+        similarity = sum(int(id) * right_counter[id] for id in left_list)
 
         print(f"Total similarity score: {similarity}")
     except FileNotFoundError:
