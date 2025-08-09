@@ -9,25 +9,27 @@ def main():
     Check if list is monotonic.
     Check if nth element is +/- 1 or 3 from n+1 element. 
     """
-    total_levels = 0
+    total_valid = 0
     with open('input.txt', 'r') as file:
-        levels = file.readline().strip().split(' ')
-        while levels and len(levels) > 1:
-            # if levels:
-            monotonic = 1 * np.sign(int(levels[1])-int(levels[0]))
-            add_count = True
+        for line in file:
+            levels = [int(x) for x in line.strip().split()]
+            # Skip empty lines or lines with only one number
+            if len(levels) <= 1:
+                continue
+            # Check if the sequence is monotonic and has valid steps
+            is_valid = True
+            expected_direction = np.sign(levels[1] - levels[0])
             for i in range(len(levels) - 1):
-                curr_lvl = int(levels[i])
-                next_lvl = int(levels[i + 1])
-                # check if monotonic
-                if 1*np.sign(next_lvl - curr_lvl) != monotonic:
-                    add_count = False
-                if abs(next_lvl - curr_lvl) not in [1,2,3]:
-                    add_count = False
-            if add_count:
-                total_levels += 1
-            levels = file.readline().strip().split(' ')
-    print(f"Total valid levels: {total_levels}")
+                diff = levels[i + 1] - levels[i]
+                current_direction = np.sign(diff)
+                # Check if monotonic direction is maintained and step size is valid
+                if current_direction != expected_direction or abs(diff) not in [1, 2, 3]:
+                    is_valid = False
+                    break
+            if is_valid:
+                total_valid += 1
+                
+    print(f"Total valid levels: {total_valid}")
 
 if __name__ == '__main__':
     main()
