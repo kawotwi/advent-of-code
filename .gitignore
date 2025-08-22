@@ -417,3 +417,11 @@ FodyWeavers.xsd
 *.msix
 *.msm
 *.msp
+
+# C++ executables and object files
+*.out
+*.exe
+*.o
+*.a
+*.so
+test
