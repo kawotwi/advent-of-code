@@ -1,6 +1,8 @@
 # part1.py
-import numpy as np
 import sys
+
+import numpy as np
+
 
 def main():
 
@@ -15,7 +17,7 @@ def main():
         print("Usage: python part1.py <input_file>")
         sys.exit(1)
     filename = sys.argv[1]
-    with open(filename, 'r') as file:
+    with open(filename) as file:
         for line in file:
             levels = [int(x) for x in line.strip().split()]
             # Skip empty lines or lines with only one number
@@ -33,7 +35,7 @@ def main():
                     break
             if is_valid:
                 total_valid += 1
-                
+
     print(f"Total valid levels: {total_valid}")
 
 if __name__ == '__main__':
