@@ -1,49 +1,54 @@
-# part1.py
+# part2.py
 import numpy as np
 
-def recursive_valid_report(levels, i):
-    """
-    Recursively check if the report is valid by removing one element at a time.
-    """
-    if i == len(levels):
+def is_valid_sequence(levels):
+    """Check if a sequence follows the required pattern (monotonic with differences of 1, 2, or 3)"""
+    if len(levels) <= 1:
+        return True
+        
+    start_direction = np.sign(levels[1] - levels[0])
+    if start_direction == 0:  # No change between first elements
         return False
-    dampened_report = levels[:i] + levels[i+1:]
-    start_direction = np.sign(dampened_report[1] - dampened_report[0])
-    valid_report = True
-    j = 0
-    while j < len(dampened_report) - 1:
-        diff = dampened_report[j + 1] - dampened_report[j]
+        
+    for i in range(len(levels) - 1):
+        diff = levels[i + 1] - levels[i]
         current_direction = np.sign(diff)
         if current_direction != start_direction or abs(diff) not in [1, 2, 3]:
-            valid_report = False
-            break
-        j += 1
-    if valid_report:
+            return False
+            
+    return True
+
+def can_be_valid_report(levels):
+    """Check if report can become valid by removing one element"""
+    # First check if it's already valid without removing anything
+    if is_valid_sequence(levels):
         return True
-    return recursive_valid_report(levels, i + 1)
+        
+    # Try removing each element
+    for i in range(len(levels)):
+        modified_levels = levels[:i] + levels[i+1:]
+        if is_valid_sequence(modified_levels):
+            return True
+            
+    return False
 
 def main():
-
     """
-    Read in file.
-    Split line by spaces.
-    Check if list is monotonic.
-    Check if nth element is +/- 1 or 3 from n+1 element. 
+    Read reports from file and count valid ones (those that are valid
+    or can become valid by removing one element)
     """
     total_valid = 0
+    
     with open('input.txt', 'r') as file:
         for line in file:
             levels = [int(x) for x in line.strip().split()]
             print(f"Levels: {levels}")
-            # Skip empty lines or lines with only one number
+            
             if len(levels) <= 1:
                 continue
-            if recursive_valid_report(levels, 0):
+                
+            if can_be_valid_report(levels):
                 total_valid += 1
-                print("Report SAFE\n")
-            else:
-                # print("Levels: ", levels)
-                print("Report UNSAFE\n")
 
     print(f"Total valid reports: {total_valid}")
 
