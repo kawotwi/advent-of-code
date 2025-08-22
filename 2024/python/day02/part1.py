@@ -1,5 +1,6 @@
 # part1.py
 import numpy as np
+import sys
 
 def main():
 
@@ -10,7 +11,11 @@ def main():
     Check if nth element is +/- 1 or 3 from n+1 element. 
     """
     total_valid = 0
-    with open('input.txt', 'r') as file:
+    if len(sys.argv) < 2:
+        print("Usage: python part1.py <input_file>")
+        sys.exit(1)
+    filename = sys.argv[1]
+    with open(filename, 'r') as file:
         for line in file:
             levels = [int(x) for x in line.strip().split()]
             # Skip empty lines or lines with only one number
