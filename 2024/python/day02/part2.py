@@ -1,9 +1,12 @@
 # part2.py
+import sys
+
 import numpy as np
 
 
 def is_valid_sequence(levels):
-    """Check if a sequence follows the required pattern (monotonic with differences of 1, 2, or 3)"""
+    """Check if a sequence follows the required pattern (monotonic with
+    differences of 1, 2, or 3)"""
     if len(levels) <= 1:
         return True
 
@@ -40,10 +43,14 @@ def main():
     """
     total_valid = 0
 
-    with open('input.txt') as file:
+    if len(sys.argv) < 2:
+        print("Usage: python part2.py <input_file>")
+        sys.exit(1)
+    filename = sys.argv[1]
+
+    with open(filename) as file:
         for line in file:
             levels = [int(x) for x in line.strip().split()]
-            print(f"Levels: {levels}")
 
             if len(levels) <= 1:
                 continue

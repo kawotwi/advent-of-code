@@ -4,7 +4,8 @@ import sys
 
 def main():
     """
-    Main function to read the input file, process the entries, and calculate the total distance between location IDs.
+    Main function to read the input file, process the entries, and calculate
+    the total distance between location IDs.
     """
     if len(sys.argv) < 2:
         print("Usage: python part1.py <input_file>")
