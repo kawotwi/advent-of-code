@@ -1,6 +1,8 @@
 # part1.py
-import numpy as np
 import sys
+
+import numpy as np
+
 
 def main():
 
@@ -8,14 +10,14 @@ def main():
     Read in file.
     Split line by spaces.
     Check if list is monotonic.
-    Check if nth element is +/- 1 or 3 from n+1 element. 
+    Check if nth element is +/- 1 or 3 from n+1 element.
     """
     total_valid = 0
     if len(sys.argv) < 2:
         print("Usage: python part1.py <input_file>")
         sys.exit(1)
     filename = sys.argv[1]
-    with open(filename, 'r') as file:
+    with open(filename) as file:
         for line in file:
             levels = [int(x) for x in line.strip().split()]
             # Skip empty lines or lines with only one number
@@ -28,12 +30,13 @@ def main():
                 diff = levels[i + 1] - levels[i]
                 current_direction = np.sign(diff)
                 # Check if monotonic direction is maintained and step size is valid
-                if current_direction != expected_direction or abs(diff) not in [1, 2, 3]:
+                if (current_direction != expected_direction or
+                    abs(diff) not in [1, 2, 3]):
                     is_valid = False
                     break
             if is_valid:
                 total_valid += 1
-                
+
     print(f"Total valid levels: {total_valid}")
 
 if __name__ == '__main__':
