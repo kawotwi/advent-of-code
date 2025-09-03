@@ -57,7 +57,7 @@ int main(int argc, char* argv[]) {
         similarity_score += count_appearances * left_list[i];
     }
 
-    cout << "Total Simalrity: " << similarity_score << endl;
+    cout << "Total Similarity: " << similarity_score << endl;
     filein.close();  // close the file
     return 0;
 }
