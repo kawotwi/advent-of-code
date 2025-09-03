@@ -1,13 +1,22 @@
 #include <stdio.h>
-#include <iostream>
-#include <fstream>
-#include <vector> 
-#include <algorithm> // sorting algo
-#include <cmath> // using abs()
-#include <sstream>
-using namespace std;
 
-int main(int argc, char* argv[]){
+#include <algorithm>  // sorting algo
+#include <cmath>      // using abs()
+#include <fstream>
+#include <iostream>
+#include <sstream>
+#include <vector>
+#include <string>
+
+using std::cerr;
+using std::cout;
+using std::endl;
+using std::ifstream;
+using std::istringstream;
+using std::string;
+using std::vector;
+
+int main(int argc, char* argv[]) {
     // Open input file for reading
     if (argc != 2) {
         cerr << "Usage: " << argv[0] << " <input_file>" << endl;
@@ -18,18 +27,18 @@ int main(int argc, char* argv[]){
         cerr << "Error opening input file" << endl;
         return 1;
     }
-    
+
     // initialize variables for left and right list, and line for file.
     string line;
     vector<int> left_list;
     vector<int> right_list;
-    
+
     // Pre-allocate memory to avoid reallocations
     left_list.reserve(1000);
     right_list.reserve(1000);
-    
+
     while (getline(filein, line)) {
-        istringstream iss(line); 
+        istringstream iss(line);
         int left, right;
         if (iss >> left >> right) {
             left_list.push_back(left);
@@ -49,6 +58,6 @@ int main(int argc, char* argv[]){
     }
 
     cout << "Total Simalrity: " << similarity_score << endl;
-    filein.close(); // close the file
+    filein.close();  // close the file
     return 0;
 }
