@@ -6,7 +6,6 @@
 
 
 int main(){
-    std::cout << "Hello world!" << std::endl;
     std::ifstream file("input.txt");
 
     if (!file.is_open()){
