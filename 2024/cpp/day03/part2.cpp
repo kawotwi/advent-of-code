@@ -72,7 +72,7 @@ int main(){
         ++dont_iter;
     }
 
-    // sorti nstructions to process in order
+    // sort instructions to process in order
     std::sort(instructions.begin(), instructions.end(),
               [](const Instruction& a, const Instruction& b) {
                 return a.position < b.position;
